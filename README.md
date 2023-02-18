@@ -1,7 +1,7 @@
 # Code Base for Projects
 
 - React
-- react-bootstrap
+- bootstrap
 - sass
 -   scss file structure w/bs override  + custom saas variables
 
