@@ -7,7 +7,7 @@
 
 # Components
 - Button
-- Navbar
+- Navbar animated logo + responsive + dropdown link
 - Footer
 
 
