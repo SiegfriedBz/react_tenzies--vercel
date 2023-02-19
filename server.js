@@ -7,7 +7,7 @@ app.use(express.json())
 app.use(cors({origin: allowedOrigins}))
 
 let data = [
-    { id: 1, content: 'note from express', important: true },
+    { id: 1, content: 'note from express', important: true }
 ]
 
 const BASE_URL = '/api'
