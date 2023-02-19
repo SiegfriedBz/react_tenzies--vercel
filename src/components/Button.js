@@ -1,12 +1,8 @@
-const Button = (props) => {
-
-    const btnClass = (
-        props.className ? props.className : 'btn btn-secondary'
-    )
+const Button = ({children, ...rest}) => {
 
     return (
-        <button className={btnClass}>
-            {props.children}
+        <button {...rest}>
+            {children}
         </button>
     )
 }
