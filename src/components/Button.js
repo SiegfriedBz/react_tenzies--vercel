@@ -1,7 +1,7 @@
-const Button = ({children, ...rest}) => {
+const Button = ({children, className='btn btn-secondary', ...rest}) => {
 
     return (
-        <button {...rest}>
+        <button className={className} {...rest}>
             {children}
         </button>
     )

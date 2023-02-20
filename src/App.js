@@ -1,26 +1,43 @@
-import { useEffect } from 'react'
-import useResourceService from './services/resourceService'
+import { useState, useEffect } from 'react'
+import noteService from './services/noteService'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Button from './components/Button'
 
 function App() {
-    const { resource, getResource, addResource, updateResource, deleteResource } = useResourceService()
+    const initNotes = {}
+    const [notes, setNotes] = useState(initNotes)
+    const { getNotes, addNote, updateNote, deleteNote } = noteService()
 
     useEffect(() => {
         (async () => {
-            await getResource()
+            const data = await getNotes()
+            setNotes(data)
         })()
     }, [])
 
-    console.log(resource)
-
     const handleAdd = async() => {
-        await addResource({
+        const data = await addNote({
             content: "note from react",
             id: 2,
             important: true
         })
+        setNotes(data)
+    }
+
+    const handleUpdate = async (id, newData) => {
+        let note = notes.find(n => n.id === id)
+        note = {...note, ...newData}
+        const data = await updateNote({
+            content: "note from react",
+            id: 2,
+            important: true
+        })
+        setNotes(data)
+    }
+
+    const handleDelete = () => {
+
     }
 
     return (

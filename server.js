@@ -1,28 +1,29 @@
 const express = require('express')
 const cors = require('cors')
+const { v4: uuidv4 } = require('uuid')
 const allowedOrigins = ['http://localhost:3000']
 
 const app = express()
 app.use(express.json())
 app.use(cors({origin: allowedOrigins}))
 
-let data = [
+let notes = [
     { id: 1, content: 'note from express', important: true }
 ]
 
-const BASE_URL = '/api'
+const BASE_URL = '/api/notes'
 
 // index
 app.get(BASE_URL, (req, res) => {
-    res.json(data)
+    res.json(notes)
 })
 
 // show
 app.get(`${BASE_URL}/:id`, (req, res) => {
     const id = parseInt(req.params.id)
-    const datum = data.find(d => d.id === id)
-    if (datum) {
-       res.json(datum)
+    const note = notes.find(n => n.id === id)
+    if (note) {
+       res.json(note)
     } else {
         res.redirect('/404')
     }
@@ -31,21 +32,19 @@ app.get(`${BASE_URL}/:id`, (req, res) => {
 // create
 app.post(`${BASE_URL}`, (req, res) => {
     const body = req.body
-    data = [...data, body]
-    res.json(data)
+    const note = {...body, id: uuidv4() }
+    notes = [...notes, note]
+    res.json(notes)
 })
 
 // update
 app.patch(`${BASE_URL}/:id`, (req, res) => {
     const id = parseInt(req.params.id)
     const body = req.params.body
-    let datum = data.find(d => d.id === id)
-    if (datum) {
-        datum = {...datum, ...body}
-        data = data.map(d => {
-            return d.id !== id ? d : datum
-        })
-        res.json(datum)
+    const note = notes.find(n => n.id === id)
+    if (note) {
+    notes = notes.map(n => n.id !== id ? n : note)
+        res.json(notes)
     } else {
         res.redirect('/404')
     }
@@ -54,10 +53,10 @@ app.patch(`${BASE_URL}/:id`, (req, res) => {
 // delete
 app.delete(`${BASE_URL}/:id`, (req, res) => {
     const id = parseInt(req.params.id)
-    const datum = data.find(d => d.id === id)
-    if (datum) {
-        data = data.filter(d => d.id !== id)
-        res.json((datum))
+    const note = notes.find(n => n.id === id)
+    if (note) {
+    notes = notes.filter(n => n.id !== id)
+        res.json(notes)
     } else {
         res.redirect('/404')
     }
