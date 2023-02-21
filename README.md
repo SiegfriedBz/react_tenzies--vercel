@@ -7,7 +7,8 @@
 -   scss file structure w/bs override  + custom saas variables
 - express server (+nodemon)
 - uuid
-- clsx 
+- clsx
+- links to lkdin github
 
 # Components
 - Button
