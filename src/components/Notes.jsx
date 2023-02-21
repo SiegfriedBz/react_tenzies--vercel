@@ -1,13 +1,34 @@
 import Note from './Note'
+import Button from './shared/Button'
+import clsx from 'clsx'
 
-const Notes = ({ notes, handleUpdate, handleDelete }) => {
+const Notes = ({
+                   notesToShow,
+                   showAllNotes,
+                   setShowAllNotes,
+                   handleUpdate,
+                   handleDelete }) => {
+
+    const toggleShowAllNotesIconClass = clsx('fa-solid', {
+        "fa-toggle-off": showAllNotes,
+        "fa-toggle-on text-warning": !showAllNotes
+    })
 
     return (
         <>
             <h1>Notes</h1>
-            {notes &&
+            <div className='d-flex'>
+                <Button
+                    className='border-0 bg-transparent'
+                    onClick={() => setShowAllNotes(prev => !prev)}
+                >
+                    <i className={toggleShowAllNotesIconClass} >< /i>
+                </Button>
+                <span>Show important notes</span>
+            </div>
+            {notesToShow &&
                 <ul>
-                    {notes.map(note => {
+                    {notesToShow.map(note => {
                             return (
                                 <Note
                                     key={note.id}

@@ -1,27 +1,28 @@
 import clsx from 'clsx';
+import Button from './shared/Button'
 
 const Note = ({ note, handleUpdate, handleDelete }) => {
     const { id, content, important } = note
 
-    const checkClass = clsx('bi bi-check-square-fill', {
+    const importantIconClass = clsx('fa-solid fa-circle-exclamation', {
         'text-warning': important
     })
 
     return (
         <li>
-            <div className="d-flex align-items-center mx-2">
+            <div className="d-flex align-items-center">
                 {content}
-                <button
-                    className='border-0 mx-2'
+                <Button
+                    className='border-0 bg-transparent'
                     onClick={() => handleUpdate(id)}>
-                    <i className={checkClass}></i>
-                </button>
-                <button
-                    className='btn btn-sm m-2'
+                    <i className={importantIconClass}></i>
+                </Button>
+                <Button
+                    className='btn btn-sm'
                     onClick={() => handleDelete(id)}
                 >
-                    <i className="bi bi-x-square bg-warning"></i>
-                </button>
+                    <i className="fa-solid fa-trash-can text-warning"></i>
+                </Button>
             </div>
         </li>
     )

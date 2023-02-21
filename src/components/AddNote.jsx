@@ -28,10 +28,9 @@ const AddNote = ({ handleAdd }) => {
             <h1>Add note</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="content">Content</label>
                     <input
                         type="text"
-                        className="form-control"
+                        className="form-control w-25"
                         id="content"
                         value={note.content}
                         onChange={handleChange}
@@ -45,9 +44,12 @@ const AddNote = ({ handleAdd }) => {
                         checked={note.important}
                         onChange={handleChange}
                     />
-                    <label className="form-check-label" htmlFor="important">Check me out</label>
+                    <label className="form-check-label" htmlFor="important">Mark as important</label>
                 </div>
-                <Button type="submit">Submit</Button>
+                <Button
+                    className='button'
+                    type="submit"
+                >Submit</Button>
             </form>
         </>
     )

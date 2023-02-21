@@ -7,6 +7,7 @@ import AddNote from "./components/AddNote";
 
 function App() {
     const [notes, setNotes] = useState([])
+    const [showAllNotes, setShowAllNotes] = useState(true)
 
     useEffect(() => {
         (async () => {
@@ -14,6 +15,8 @@ function App() {
             setNotes(notes)
         })()
     }, [])
+
+    const notesToShow = showAllNotes ? notes : notes.filter(n => n.important)
 
     const handleAdd = async(note) => {
         const newNote = await addNote(note)
@@ -37,7 +40,9 @@ function App() {
             <Navbar />
             <div className="container">
                 <Notes
-                    notes={notes}
+                    notesToShow={notesToShow}
+                    showAllNotes={showAllNotes}
+                    setShowAllNotes={setShowAllNotes}
                     handleUpdate={handleUpdate}
                     handleDelete={handleDelete}
                 />
