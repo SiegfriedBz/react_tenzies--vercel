@@ -1,16 +1,20 @@
-# Code Base for Projects
+# Template for Projects
 
 - React
-- bootstrap + bs icons
+- bootstrap
+- Font awsome icons
 - sass
 -   scss file structure w/bs override  + custom saas variables
-- express server
+- express server (+nodemon)
+- uuid
+- clsx 
 
 # Components
 - Button
 - Navbar animated logo + responsive + dropdown link
 - Footer
+- Notes, Note, AddNote
 
 ---- 
 
-<img width="1166" alt="image" src="https://user-images.githubusercontent.com/99029880/219952695-8652da4c-b46f-4a40-b03a-0852d9110770.png">
+![image](https://user-images.githubusercontent.com/99029880/220377780-c0c706f3-6a1f-44f6-8eb1-70b405f08861.png)
