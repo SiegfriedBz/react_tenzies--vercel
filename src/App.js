@@ -1,52 +1,47 @@
 import { useState, useEffect } from 'react'
-import noteService from './services/noteService'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import Button from './components/Button'
+import  { getNotes, addNote, updateNote, deleteNote } from './services/noteService'
+import Navbar from './components/shared/Navbar'
+import Footer from './components/shared/Footer'
+import Notes from './components/Notes'
+import AddNote from "./components/AddNote";
 
 function App() {
-    const initNotes = {}
-    const [notes, setNotes] = useState(initNotes)
-    const { getNotes, addNote, updateNote, deleteNote } = noteService()
+    const [notes, setNotes] = useState([])
 
     useEffect(() => {
         (async () => {
-            const data = await getNotes()
-            setNotes(data)
+            const notes = await getNotes()
+            setNotes(notes)
         })()
     }, [])
 
-    const handleAdd = async() => {
-        const data = await addNote({
-            content: "note from react",
-            id: 2,
-            important: true
-        })
-        setNotes(data)
+    const handleAdd = async(note) => {
+        const newNote = await addNote(note)
+        setNotes([...notes, newNote])
     }
 
-    const handleUpdate = async (id, newData) => {
-        let note = notes.find(n => n.id === id)
-        note = {...note, ...newData}
-        const data = await updateNote({
-            content: "note from react",
-            id: 2,
-            important: true
-        })
-        setNotes(data)
+    const handleUpdate = async (id) => {
+        const note = notes.find(n => n.id === id)
+        const changedNote = {...note, important: !note.important}
+        const updatedNote = await updateNote(id, changedNote)
+        setNotes(notes.map(n => n.id !== id ? n : updatedNote))
     }
 
-    const handleDelete = () => {
-
+    const handleDelete = async (id) => {
+        await deleteNote(id)
+        setNotes(notes.filter(n => n.id !== id))
     }
 
     return (
         <>
             <Navbar />
             <div className="container">
-                <h1>Hey</h1>
-                <Button className='button'>Hey</Button>
-                <Button onClick={handleAdd}>Hey</Button>
+                <Notes
+                    notes={notes}
+                    handleUpdate={handleUpdate}
+                    handleDelete={handleDelete}
+                />
+                <AddNote handleAdd={handleAdd} />
             </div>
             <Footer />
         </>

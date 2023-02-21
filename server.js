@@ -8,66 +8,70 @@ app.use(express.json())
 app.use(cors({origin: allowedOrigins}))
 
 let notes = [
-    { id: 1, content: 'note from express', important: true }
+    { id: '1', content: 'note from express', important: true }
 ]
 
 const BASE_URL = '/api/notes'
 
 // index
 app.get(BASE_URL, (req, res) => {
-    res.json(notes)
+    res.status(200).json(notes)
 })
 
-// show
-app.get(`${BASE_URL}/:id`, (req, res) => {
-    const id = parseInt(req.params.id)
-    const note = notes.find(n => n.id === id)
-    if (note) {
-       res.json(note)
-    } else {
-        res.redirect('/404')
-    }
-})
+// // show
+// app.get(`${BASE_URL}/:id`, (req, res) => {
+//     const { params: { id } } = req
+//     const note = notes.find(n => n.id === id)
+//     if (note) {
+//         res.status(200).json(note)
+//     } else {
+//         res.sendStatus(404)
+//     }
+// })
 
 // create
 app.post(`${BASE_URL}`, (req, res) => {
-    const body = req.body
-    const note = {...body, id: uuidv4() }
-    notes = [...notes, note]
-    res.json(notes)
+    let { body: { note: newNote } } = req
+    newNote = {...newNote, id: uuidv4() }
+    notes = [...notes, newNote]
+    // status created
+    res.status(201).json(newNote)
 })
 
 // update
 app.patch(`${BASE_URL}/:id`, (req, res) => {
-    const id = parseInt(req.params.id)
-    const body = req.params.body
+    const { params: { id }, body } = req
     const note = notes.find(n => n.id === id)
     if (note) {
-    notes = notes.map(n => n.id !== id ? n : note)
-        res.json(notes)
+        const updatedNote = {...note, ...body}
+        notes = notes.map(n => n.id !== id ? n : updatedNote)
+        res.status(200).json(updatedNote)
     } else {
-        res.redirect('/404')
+        // status resource not found
+        res.sendStatus(404)
     }
 })
 
 // delete
 app.delete(`${BASE_URL}/:id`, (req, res) => {
-    const id = parseInt(req.params.id)
+    const { params: { id } } = req
     const note = notes.find(n => n.id === id)
     if (note) {
     notes = notes.filter(n => n.id !== id)
-        res.json(notes)
+        // status success w/ no data to return
+        res.sendStatus(204);
     } else {
-        res.redirect('/404')
+        // status resource not found
+        res.sendStatus(404);
     }
 })
 
 // error
-app.get(`/404`, (req, res) => {
-    res.send(`
-        <h1>oups...page not found</h1>
-    `)
-})
+// app.get(`${BASE_URL}/404`, (req, res) => {
+//     res.send(`
+//         <h1>oups...page not found</h1>
+//     `)
+// })
 
 const PORT = 3001;
 app.listen(PORT, () => {
