@@ -4,7 +4,7 @@ const Notes = ({ notes, handleUpdate, handleDelete }) => {
 
     return (
         <>
-            <h6>notes</h6>
+            <h1>Notes</h1>
             {notes &&
                 <ul>
                     {notes.map(note => {
