@@ -73,7 +73,7 @@ app.delete(`${BASE_URL}/:id`, (req, res) => {
 //     `)
 // })
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`express listening to port ${PORT}`)
 })
