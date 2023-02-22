@@ -2,7 +2,7 @@ import { useState } from "react"
 import Button from './shared/Button'
 
 const AddNote = ({ handleAdd }) => {
-    const initNote = { content: " ", important: false }
+    const initNote = { content: "", important: false }
     const [note, setNote] = useState(initNote);
 
     const handleChange = (e) => {
