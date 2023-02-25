@@ -1,5 +1,10 @@
-# Template for Projects
 
+# React Meme Generator
+
+---- 
+
+# Template used 
+https://github.com/SiegfriedBz/template__react-bs-fa-saas-express
 - React
 - bootstrap
 - Font awsome icons
@@ -15,7 +20,3 @@
 - Navbar animated logo + responsive + dropdown link
 - Footer
 - Notes, Note, AddNote
-
----- 
-
-![image](https://user-images.githubusercontent.com/99029880/220377780-c0c706f3-6a1f-44f6-8eb1-70b405f08861.png)
