@@ -4,28 +4,52 @@ import Footer from './components/shared/Footer'
 import Form from './components/Form'
 import Card from './components/Card'
 
+const API_URL = 'https://api.imgflip.com/get_memes'
+
 function App() {
-    const initMemeText = { partA: '', partB: '' }
-    const [memeText, setMemeText] = useState(initMemeText)
-    const [imgUrl, setImgUrl] = useState('')
+    const [allMemeImages, setAllMemeImages] = useState([])
+    const [meme, setMeme] = useState({
+        url: '',
+        textTop: '',
+        textBottom: ''
+    })
 
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await fetch(API_URL)
+                const data = await response.json()
+                if(data.success) {
+                    setAllMemeImages(data.data.memes)
+                } else {
+                    console.log(`status: ${data.success}`)
+                    return
+                }
+            } catch(error) {
+                console.log(error)
+            }
+        })()
+    }, [])
 
-
-    const onSubmitText = async (input) => {
-        setMemeText(input)
-        // fetch img
-        setImgUrl()
+    const onSubmitText = (input) => {
+        if (allMemeImages) {
+            const rdm = Math.floor(Math.random() *  allMemeImages.length)
+            setMeme({
+                url: allMemeImages[rdm].url,
+                textTop: input.textTop ,
+                textBottom: input.textBottom
+            })
+        } else { return }
     }
 
     return (
         <>
             <Navbar />
             <div className="container">
-                <Form onSubmitText={onSubmitText}
-                />
-                <Card
-                    memeText={memeText}
-                    imgUrl={imgUrl}/>
+                <main>
+                    <Form onSubmitText={onSubmitText} />
+                    <Card meme={meme} />
+                </main>
             </div>
             <Footer />
         </>

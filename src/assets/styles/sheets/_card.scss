@@ -1,0 +1,25 @@
+.card--wrapper {
+  margin: 1rem 1rem;
+  position: relative;
+}
+
+.card--img {
+  width: 100%;
+  overflow: hidden;
+}
+
+.card--userTextTop {
+  position: absolute;
+  z-index: 100;
+  background-color: red;
+  top: 2rem;
+  left: 2rem;
+}
+
+.card--userTextBottom {
+  position: absolute;
+  z-index: 100;
+  background-color: red;
+  bottom: 2rem;
+  right: 2rem;
+}

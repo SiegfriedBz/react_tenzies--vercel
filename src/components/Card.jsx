@@ -1,8 +1,16 @@
-const Card = ({ memeText, imgUrl }) => {
+const Card = ({ meme }) => {
+    const { url, textTop, textBottom } = meme
+
     return (
-        <div className="card mx-auto my-3" style={{'width': '36rem'}}>
-            <img src={imgUrl} className="card-img-top" alt="meme image" />
-        </div>
+            <>
+                {url && textTop && textBottom &&
+                    <div className="card--wrapper">
+                        <img src={url} class='card--img' alt="meme image" />
+                        <span className='card--userTextTop'>{textTop}</span>
+                        <span className='card--userTextBottom'>{textBottom}</span>
+                    </div>
+                }
+            </>
         )
 }
 

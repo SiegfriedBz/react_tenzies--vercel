@@ -17,12 +17,13 @@
       list-style: none;
       margin-left: 1rem;
       a {
-        color: $yellow;
         text-decoration: none;
         i {
+          color: $yellow;
           font-size: 1.75rem;
+
           &:hover {
-            color: $pink;
+            color: $yellow-light;
           }
         }
       }
@@ -33,5 +34,9 @@
     color: $yellow;
     font-weight: bolder;
     font-style: italic;
+
+    &:hover {
+      color: $yellow-light;
+    }
   }
 }
