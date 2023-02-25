@@ -1,52 +1,31 @@
 import { useState, useEffect } from 'react'
-import  { getNotes, addNote, updateNote, deleteNote } from './services/noteService'
 import Navbar from './components/shared/Navbar'
 import Footer from './components/shared/Footer'
-import Notes from './components/Notes'
-import AddNote from "./components/AddNote";
+import Form from './components/Form'
+import Card from './components/Card'
 
 function App() {
-    const [notes, setNotes] = useState([])
-    const [showAllNotes, setShowAllNotes] = useState(true)
+    const initMemeText = { partA: '', partB: '' }
+    const [memeText, setMemeText] = useState(initMemeText)
+    const [imgUrl, setImgUrl] = useState('')
 
-    useEffect(() => {
-        (async () => {
-            const notes = await getNotes()
-            setNotes(notes)
-        })()
-    }, [])
 
-    const notesToShow = showAllNotes ? notes : notes.filter(n => n.important)
 
-    const handleAdd = async(note) => {
-        const newNote = await addNote(note)
-        setNotes([...notes, newNote])
-    }
-
-    const handleUpdate = async (id) => {
-        const note = notes.find(n => n.id === id)
-        const changedNote = {...note, important: !note.important}
-        const updatedNote = await updateNote(id, changedNote)
-        setNotes(notes.map(n => n.id !== id ? n : updatedNote))
-    }
-
-    const handleDelete = async (id) => {
-        await deleteNote(id)
-        setNotes(notes.filter(n => n.id !== id))
+    const onSubmitText = async (input) => {
+        setMemeText(input)
+        // fetch img
+        setImgUrl()
     }
 
     return (
         <>
             <Navbar />
             <div className="container">
-                <Notes
-                    notesToShow={notesToShow}
-                    showAllNotes={showAllNotes}
-                    setShowAllNotes={setShowAllNotes}
-                    handleUpdate={handleUpdate}
-                    handleDelete={handleDelete}
+                <Form onSubmitText={onSubmitText}
                 />
-                <AddNote handleAdd={handleAdd} />
+                <Card
+                    memeText={memeText}
+                    imgUrl={imgUrl}/>
             </div>
             <Footer />
         </>

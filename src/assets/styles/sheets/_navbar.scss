@@ -1,3 +1,12 @@
 .nav--wrapper {
-  box-shadow: 0px 2px 7px -2px #485056;
+  background: linear-gradient(to right, $pink, $orange);
+  box-shadow: 0px 2px 7px -2px $orange;
+}
+
+.nav--title {
+  margin-left: 1rem;
+  color: $yellow;
+  font-size: 2rem;
+  font-weight: bolder;
+  font-style: italic;
 }
