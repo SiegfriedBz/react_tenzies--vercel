@@ -6,7 +6,7 @@ const Form = ({onSubmitText}) => {
     const [input, setInput] = useState(initInput)
 
     const handleChange = (e) => {
-        setInput({...input, [e.target.id] : e.target.value})
+        setInput({...input, [e.target.name] : e.target.value})
     }
 
     const handleSubmit = (e) => {
@@ -21,7 +21,7 @@ const Form = ({onSubmitText}) => {
                 <input
                     type="text"
                     className="form-control mx-2"
-                    id="textTop"
+                    name="textTop"
                     placeholder='Enter text...'
                     value={input.textTop}
                     onChange={handleChange}
@@ -29,7 +29,7 @@ const Form = ({onSubmitText}) => {
                 <input
                     type="text"
                     className="form-control mx-2"
-                    id="textBottom"
+                    name="textBottom"
                     placeholder='Enter text...'
                     value={input.textBottom}
                     onChange={handleChange}
