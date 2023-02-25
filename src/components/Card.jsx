@@ -4,7 +4,7 @@ const Card = ({ meme }) => {
     return (
             <>
                 {url && textTop && textBottom &&
-                    <div className="card--wrapper">
+                    <div className="d-flex justify-content-center card--wrapper">
                         <img src={url} class='card--img' alt="meme image" />
                         <span className='card--userTextTop'>{textTop}</span>
                         <span className='card--userTextBottom'>{textBottom}</span>
