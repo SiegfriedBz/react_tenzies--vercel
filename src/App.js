@@ -53,6 +53,7 @@ function App() {
     const rollDices = () => {
         let updatedDices
         if(isGameOver()) {
+            setSelectedValue(undefined)
             updatedDices = initialDices.map(dice => {
                 return (
                     {...dice, value: rdm()}
