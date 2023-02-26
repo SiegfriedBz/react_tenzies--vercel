@@ -42,22 +42,33 @@ function App() {
         setDices(updatedDices)
     }
 
+    const isGameOver = () => {
+        return dices
+            .filter(dice => dice.isSelected)
+            .length === dices.length
+    }
+
     const rdm = () => Math.floor(Math.random() * dices.length)
 
     const rollDices = () => {
-        const updatedDices = dices.map(dice => {
-            return (
-                {...dice, value: dice.isSelected ? dice.value : rdm()}
-            )
-        })
+        let updatedDices
+        if(isGameOver()) {
+            updatedDices = initialDices.map(dice => {
+                return (
+                    {...dice, value: rdm()}
+                )
+            })
+        } else {
+            updatedDices = dices.map(dice => {
+                return (
+                    {...dice, value: dice.isSelected ? dice.value : rdm()}
+                )
+            })
+        }
         setDices(updatedDices)
     }
 
-    const btnText = dices
-            .filter(dice => dice.isSelected)
-            .length === dices.length ?
-            'Restart Game'
-            : 'Roll'
+    const btnText = isGameOver() ? 'Restart Game' : 'Roll'
 
     return (
         <>
