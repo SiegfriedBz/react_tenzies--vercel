@@ -11,5 +11,5 @@ https://react-tenzies-peach.vercel.app/
 
 ---- 
 
-![image](https://user-images.githubusercontent.com/99029880/221426122-53952f74-c7be-428e-b72f-efc6ad7b4329.png)
+![image](https://user-images.githubusercontent.com/99029880/221434559-8af069ff-f658-44f1-8dc2-e0b2eb86cfdc.png)
 
