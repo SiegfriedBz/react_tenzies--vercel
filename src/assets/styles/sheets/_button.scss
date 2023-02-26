@@ -9,7 +9,11 @@
   background-color: $primary;
   transition: background-color 0.15s ease-in-out;
 
-  &:hover {
+  &:not(.btn-selected):hover {
     background-color: $blue-light;
   }
+}
+
+.btn-selected {
+  background-color: $green;
 }

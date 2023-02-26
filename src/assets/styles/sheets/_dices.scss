@@ -1,0 +1,23 @@
+.dices-grid-wrapper {
+  margin: auto;
+  padding: 1rem;
+  border: 2px solid gold;
+  width: 350px;
+}
+
+.dices-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.dices-grid-item {
+  grid-column: span 1;
+  grid-row: span 1;
+  text-align: center;
+}
+
+.selected-value {
+  color: $yellow-light;
+}

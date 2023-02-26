@@ -1,55 +1,79 @@
 import { useState, useEffect } from 'react'
 import Navbar from './components/shared/Navbar'
 import Footer from './components/shared/Footer'
-import Form from './components/Form'
-import Card from './components/Card'
+import Dices from './components/Dices'
+import Button from './components/shared/Button'
+import clsx from 'clsx'
 
-const API_URL = 'https://api.imgflip.com/get_memes'
+const initialDices = [
+    {id: 1, value: undefined, isSelected: false},
+    {id: 2, value: undefined, isSelected: false},
+    {id: 3, value: undefined, isSelected: false},
+    {id: 4, value: undefined, isSelected: false},
+    {id: 5, value: undefined, isSelected: false},
+    {id: 6, value: undefined, isSelected: false},
+    {id: 7, value: undefined, isSelected: false},
+    {id: 8, value: undefined, isSelected: false},
+    {id: 9, value: undefined, isSelected: false},
+]
 
 function App() {
-    const [allMemeImages, setAllMemeImages] = useState([])
-    const [meme, setMeme] = useState({
-        url: '',
-        topText: '',
-        bottomText: '',
-        withBorder: true
-    })
+
+    const [dices, setDices] = useState(initialDices)
+    const [selectedValue, setSelectedValue] = useState(undefined)
 
     useEffect(() => {
-        (async () => {
-            try {
-                const response = await fetch(API_URL)
-                const data = await response.json()
-                if(data.success) {
-                    setAllMemeImages(data.data.memes)
-                } else {
-                    console.log(`status: ${data.success}`)
-                    return
-                }
-            } catch(error) {
-                console.log(error)
-            }
-        })()
+        rollDices()
     }, [])
 
-    const onSubmitText = (input) => {
-        if (allMemeImages) {
-            const rdm = Math.floor(Math.random() *  allMemeImages.length)
-            setMeme({
-                ...input, 
-                url: allMemeImages[rdm].url
-            })
-        } else { return }
+    const selectValue = (value) => {
+        if(typeof selectedValue === "undefined") {
+            setSelectedValue(value)
+        }
     }
+
+    const selectDice = (id, value) => {
+        selectValue(value)
+        const updatedDices = dices.map(dice => {
+            return (
+                {...dice, isSelected: dice.id !== id ? dice.isSelected : true}
+            )
+        })
+        setDices(updatedDices)
+    }
+
+    const rdm = () => Math.floor(Math.random() * dices.length)
+
+    const rollDices = () => {
+        const updatedDices = dices.map(dice => {
+            return (
+                {...dice, value: dice.isSelected ? dice.value : rdm()}
+            )
+        })
+        setDices(updatedDices)
+    }
+
+    const btnText = dices
+            .filter(dice => dice.isSelected)
+            .length === dices.length ?
+            'Restart Game'
+            : 'Roll'
 
     return (
         <>
             <Navbar />
             <div className="container">
-                <main>
-                    <Form onSubmitText={onSubmitText} />
-                    <Card meme={meme} />
-                </main>
+                <div className='d-flex flex-column justify-content-center align-items-center mt-3'>
+                    <Dices
+                        dices={dices}
+                        selectDice={selectDice}
+                        selectedValue={selectedValue}
+                    />
+                    <Button
+                        onClick={rollDices}
+                        className='btn btn-primary w-50 my-1'
+                    >{btnText}</Button>
+                </div>
             </div>
             <Footer />
         </>

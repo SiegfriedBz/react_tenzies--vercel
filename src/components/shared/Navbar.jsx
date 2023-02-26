@@ -7,7 +7,7 @@ const Navbar = () => {
                 <div className="container-fluid">
                         <a className="navbar-brand d-flex align-items-center" href="#">
                             {/*<img src={logo} alt="logo" className="logo" />*/}
-                            <span className='nav--title'>Meme Generator</span>
+                            <span className='nav--title'>Tenzies</span>
                         </a>
                 </div>
             </nav>
