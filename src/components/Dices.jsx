@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import clsx from 'clsx'
 import Dice from './Dice'
 
 const Dices = ({dices, selectDice, selectedValue}) => {
