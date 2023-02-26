@@ -1,7 +1,7 @@
 
 # Tenzies
 
-- deployed on Vercel @ https://react-tenzies-peach.vercel.app/
+https://react-tenzies-peach.vercel.app/
 
 ---- 
 - React
