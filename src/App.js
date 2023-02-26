@@ -3,7 +3,6 @@ import Navbar from './components/shared/Navbar'
 import Footer from './components/shared/Footer'
 import Dices from './components/Dices'
 import Button from './components/shared/Button'
-import clsx from 'clsx'
 
 const initialDices = [
     {id: 1, value: undefined, isSelected: false},
