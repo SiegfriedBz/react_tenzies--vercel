@@ -74,7 +74,7 @@ function App() {
         <>
             <Navbar />
             <div className="container">
-                <div className='d-flex flex-column justify-content-center align-items-center mt-3'>
+                <div className='game-wrapper'>
                     <Dices
                         dices={dices}
                         selectDice={selectDice}
@@ -82,7 +82,7 @@ function App() {
                     />
                     <Button
                         onClick={rollDices}
-                        className='btn btn-primary w-50 my-1'
+                        className='btn-play'
                     >{btnText}</Button>
                 </div>
             </div>

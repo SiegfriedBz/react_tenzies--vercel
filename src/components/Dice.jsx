@@ -4,7 +4,7 @@ import clsx from 'clsx'
 const Dice = ({dice, selectDice, selectedValue}) => {
     const { id, value, isSelected } = dice
 
-    const diceClass = clsx('button', {
+    const diceClass = clsx('btn-dice', {
         'btn-selected': isSelected,
     })
 

@@ -1,15 +1,26 @@
+.game-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  margin: 2rem auto;
+  border: 0.15rem solid $pink;
+  border-radius: 6px;
+  box-shadow: 4px 4px 6px -3px $yellow-light;
+}
+
 .dices-grid-wrapper {
-  margin: auto;
+  margin: 1rem;
   padding: 1rem;
-  border: 2px solid gold;
-  width: 350px;
+  width: 250px;
 }
 
 .dices-grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 10px;
+  gap: 15px;
 }
 
 .dices-grid-item {

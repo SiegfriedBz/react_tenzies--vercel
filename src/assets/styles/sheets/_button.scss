@@ -6,14 +6,31 @@
   color: $yellow;
   font-size: 1.25rem;
   font-weight: bolder;
+}
+
+.btn-dice {
+  @extend .button;
   background-color: $primary;
   transition: background-color 0.15s ease-in-out;
 
   &:not(.btn-selected):hover {
-    background-color: $blue-light;
+    background-color: $blue-light-hover;
   }
 }
 
 .btn-selected {
   background-color: $green;
+}
+
+.btn-play {
+  @extend .button;
+
+  width: 250px;
+  margin: 0.15rem;
+  border-radius: 6px;
+  background-color: $pink-light;
+
+  &:hover {
+    background-color: $pink-light-hover;
+  }
 }
