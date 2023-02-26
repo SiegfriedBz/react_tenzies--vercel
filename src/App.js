@@ -1,22 +1,18 @@
 import { useState, useEffect } from 'react'
+import Confetti from 'react-confetti'
 import Navbar from './components/shared/Navbar'
 import Footer from './components/shared/Footer'
 import Dices from './components/Dices'
 import Button from './components/shared/Button'
 
-const initialDices = [
-    {id: 1, value: undefined, isSelected: false},
-    {id: 2, value: undefined, isSelected: false},
-    {id: 3, value: undefined, isSelected: false},
-    {id: 4, value: undefined, isSelected: false},
-    {id: 5, value: undefined, isSelected: false},
-    {id: 6, value: undefined, isSelected: false},
-    {id: 7, value: undefined, isSelected: false},
-    {id: 8, value: undefined, isSelected: false},
-    {id: 9, value: undefined, isSelected: false},
-]
-
 function App() {
+
+    let initialDices = []
+    for(let i = 0; i < 9; i += 1) {
+        initialDices.push(
+        {id: i, value: undefined, isSelected: false}
+        )
+    }
 
     const [dices, setDices] = useState(initialDices)
     const [selectedValue, setSelectedValue] = useState(undefined)
@@ -47,7 +43,7 @@ function App() {
             .length === dices.length
     }
 
-    const rdm = () => Math.floor(Math.random() * dices.length)
+    const rdm = () => Math.floor(Math.random() * 7)
 
     const rollDices = () => {
         let updatedDices
@@ -75,6 +71,12 @@ function App() {
             <Navbar />
             <div className="container">
                 <div className='game-wrapper'>
+                    {isGameOver() &&
+                        <Confetti
+                            width={window.innerWidth || 300}
+                            height={window.innerHeight || 200}
+                        />
+                    }
                     <Dices
                         dices={dices}
                         selectDice={selectDice}
