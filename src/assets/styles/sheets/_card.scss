@@ -1,6 +1,12 @@
 .card--wrapper {
-  margin: 1rem 1rem;
   position: relative;
+  margin: auto;
+  max-height: 550px;
+  max-width: 550px;
+}
+
+.card--wrapper-border {
+  border: 5px solid $yellow-light;
 }
 
 .card--img {
@@ -8,18 +14,20 @@
   overflow: hidden;
 }
 
-.card--userTextTop {
+.card--topText {
   position: absolute;
+  color: $yellow-light;
   z-index: 100;
-  background-color: red;
+  font-weight: bolder;
   top: 2rem;
   left: 2rem;
 }
 
-.card--userTextBottom {
+.card--bottomText {
   position: absolute;
+  color: $yellow-light;
   z-index: 100;
-  background-color: red;
+  font-weight: bolder;
   bottom: 2rem;
   right: 2rem;
 }

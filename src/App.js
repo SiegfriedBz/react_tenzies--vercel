@@ -10,8 +10,9 @@ function App() {
     const [allMemeImages, setAllMemeImages] = useState([])
     const [meme, setMeme] = useState({
         url: '',
-        textTop: '',
-        textBottom: ''
+        topText: '',
+        bottomText: '',
+        withBorder: true
     })
 
     useEffect(() => {
@@ -36,8 +37,9 @@ function App() {
             const rdm = Math.floor(Math.random() *  allMemeImages.length)
             setMeme({
                 url: allMemeImages[rdm].url,
-                textTop: input.textTop ,
-                textBottom: input.textBottom
+                topText: input.topText ,
+                bottomText: input.bottomText,
+                withBorder: input.withBorder
             })
         } else { return }
     }

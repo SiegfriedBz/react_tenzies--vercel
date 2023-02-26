@@ -1,13 +1,19 @@
+import clsx from 'clsx'
+
 const Card = ({ meme }) => {
-    const { url, textTop, textBottom } = meme
+    const { url, topText, bottomText, withBorder } = meme
+
+    const cardWrapperClass = clsx( 'd-flex justify-content-center card--wrapper', {
+        'card--wrapper-border': withBorder
+    })
 
     return (
             <>
-                {url && textTop && textBottom &&
-                    <div className="d-flex justify-content-center card--wrapper">
-                        <img src={url} class='card--img' alt="meme image" />
-                        <span className='card--userTextTop'>{textTop}</span>
-                        <span className='card--userTextBottom'>{textBottom}</span>
+                {url && topText && bottomText &&
+                    <div className={cardWrapperClass} >
+                        <img src={url} className='card--img' alt="meme image" />
+                        <h1 className='card--topText'>{topText}</h1>
+                        <h1 className='card--bottomText'>{bottomText}</h1>
                     </div>
                 }
             </>
