@@ -36,10 +36,8 @@ function App() {
         if (allMemeImages) {
             const rdm = Math.floor(Math.random() *  allMemeImages.length)
             setMeme({
-                url: allMemeImages[rdm].url,
-                topText: input.topText ,
-                bottomText: input.bottomText,
-                withBorder: input.withBorder
+                ...input, 
+                url: allMemeImages[rdm].url
             })
         } else { return }
     }
